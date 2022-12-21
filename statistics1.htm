@@ -1,0 +1,617 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">     
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+	<title>HALO</title>
+	<meta name="description" content="LIME MEETING MANAGEMENT SYSTEM">
+	<meta name="author" content="LIMESNC">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">    
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="/halo/img/halo_favicon.ico">
+	<!-- CSS -->
+	<link rel="stylesheet" href="/hlao/css/fa.css">
+	<link rel="stylesheet" href="/halo/css/jquery-ui.css">
+	<link rel="stylesheet" href="/halo/css/common.css">
+	<link rel="stylesheet" href="/halo/css/halo.css">
+    <!-- script -->
+	<script type="text/javascript" src="/halo/js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="/halo/js/jquery-ui.js"></script>
+	<script type="text/javascript" src="/halo/js/common.js"></script>
+	<script type="text/javascript" src="/halo/js/chart.js"></script>
+	<script type="text/javascript" src="/halo/js/chartjs-plugin-datalabels.js"></script>
+</head>
+
+
+<body class="page" id="stat">
+	<div id="header"></div>
+	<div class="contentBox">
+		<div class="aside"></div>
+		<div class="content flex-direction-column">
+            <section class="titSection">
+                <div class="pageTit">통 계 - 일별 감지 추이</div>
+                <div class="ment">특정 센서의 일자별 감지 변화를 조회합니다.</div>
+                <!-- <div class="option">기능 폼</div> -->
+            </section>
+			<ul class="tabMenuSection">
+				<li class="active" onclick="location.href='statistics1.htm'">일별 감지 추이</li>
+				<li onclick="location.href='statistics2.htm'">감지 테마별 블랙리스트</li>
+				<li onclick="location.href='statistics3.htm'">기간내 시간대별 발생분포</li>
+			</ul>
+            <section class="srchSection">
+                <div class="row">
+                    <div class="item">기간</div>
+                    <div class="answer">
+                        <select id="" class="input-md">
+                            <option>직접입력</option><option>1분기</option><option>2분기</option><option>3분기</option><option>4분기</option><option>상반기</option><option>하반기</option><option>년간</option>
+                        </select>                      
+                        <div class="period input-md">
+                            <input type="text" id="" name="" class="br"><div class="point"></div>
+                            <input type="text" id="" name="" class="br">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="item">센서</div>
+                    <div class="answer">
+                        <select class="input-md">
+                            <option>건물 선택</option>
+                            <option>본관</option>
+                            <option>별관</option>
+                            <option>IT동</option>
+                        </select>
+                        <select class="input-md">
+                            <option>층 선택</option>
+                            <option>2층</option>
+                            <option>1층</option>
+                            <option>지하1층</option>
+                            <option>지하2층</option>
+                        </select>
+                        <select class="input-md">
+                            <option>장소 선택</option>
+                            <option>중앙로비</option>
+                            <option>남측 남자화장실</option>
+                            <option>대회의실</option>
+                            <option>탕비실</option>
+                        </select>
+                    </div>
+                </div>
+				<div class="btnDiv">
+					<button class="btn btn-blue btn-md">조 회</button>
+					<button class="btn btn-silver btn-md">초기화</button>
+                    <div class="btnGap"></div>
+					<button class="btn btn-blue-border btn-md">다운로드</button>
+				</div>
+            </section>
+			<section class="graphSection tab1">
+
+                <article>
+                    <div class="titDiv">
+                        <div class="tit">
+                            <span>2022.01.01 ~ 2022.01.15</span> 
+                            <span>본관</span> <span>3층</span> <span>대회의실</span>
+                            <span class="t1">공기질</span> 감지추이
+                        </div>
+                        <div class="tip">해당일의 최대 감지 수치를 기준으로 조회</div>
+                    </div>
+                    <div class="containerBox">
+                        <div class="canvasDiv">
+                            <canvas id="myChartAir" class="chartjs-render-monitor"></canvas>
+                        </div>
+                        <div class="index">
+                            <div class="indexAir">
+                                <div><span>위험</span>~500+</div>
+                                <div><span>매우나쁨</span>~300</div>
+                                <div><span>나쁨</span>~200</div>
+                                <div><span>주의</span>~150</div>
+                                <div><span>보통</span>~100</div>
+                                <div><span>좋음</span>0~50</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article>
+                    <div class="titDiv">
+                        <div class="tit">
+                            <span>2022.01.01 ~ 2022.01.15</span> 
+                            <span>본관</span> <span>3층</span> <span>대회의실</span>
+                            <span class="t2">건강지수</span>감지추이
+                        </div>
+                        <div class="tip">해당일의 최대 감지 수치를 기준으로 조회</div>
+                    </div>
+                    <div class="containerBox">
+                        <div class="canvasDiv">
+                            <canvas id="myChartHealth" class="chartjs-render-monitor"></canvas>
+                        </div>
+                        <div class="index">
+                            <div class="indexHealth">
+                                <div><span>위험</span>5</div>
+                                <div><span>심각</span>4</div>
+                                <div><span>나쁨</span>3</div>
+                                <div><span>보통</span>2</div>
+                                <div><span>좋음</span>1</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article>
+                    <div class="titDiv">
+                        <div class="tit">
+                            <span>2022.01.01 ~ 2022.01.15</span> 
+                            <span>본관</span> <span>3층</span> <span>대회의실</span>
+                            <span>환경 (<span class="t1">온도</span> <span class="t6">습도</span>)</span>감지추이
+                        </div>
+                        <div class="tip">해당일의 최고,최저 감지 수치를 기준으로 조회</div>
+                    </div>
+                    <div class="canvasDiv">
+                        <canvas id="myChartEnv" class="chartjs-render-monitor"></canvas>
+                    </div>
+                </article>
+
+                <article>
+                    <div class="titDiv">
+                        <div class="tit">
+                            <span>2022.01.01 ~ 2022.01.15</span> 
+                            <span>본관</span> <span>3층</span> <span>대회의실</span>
+                            <span class="t6">유해가스</span><span class="t4">흡연</span><span class="t1">안전</span><span class="t7">침입</span>
+                            감지추이
+                        </div>
+                        <div class="tip">해당일의 감지 횟 수 기준으로 조회</div>
+                    </div>
+                    <div class="canvasDiv">
+                        <canvas id="myChartComp" class="chartjs-render-monitor"></canvas>
+                    </div>
+                </article>
+
+                <article>
+                    <div class="titDiv">
+                        <div class="tit">
+                            <span>2022.01.01 ~ 2022.01.15</span> 
+                            <span>본관</span> <span>3층</span> <span>대회의실</span>
+                            <span class="t5">소음</span>감지추이
+                        </div>
+                        <div class="tip">해당일의 최고 데시벨 기준으로 조회</div>
+                    </div>
+                    <div class="containerBox">
+                        <div class="canvasDiv">
+                            <canvas id="myChartNois" class="chartjs-render-monitor"></canvas>
+                        </div>
+                    </div>
+                </article>
+
+			</section>
+		</div>
+	</div>
+</body>
+
+
+
+
+
+<script type="text/javascript">//공기질 차트
+    const ctx = document.getElementById('myChartAir');
+	var GradientBgPlugin = {
+	  beforeDraw: function(chart, args, options) {
+	    const ctx = chart.ctx;
+	    const canvas = chart.canvas;
+	    const chartArea = chart.chartArea;
+	    // Chart background
+	    var gradientBack = canvas.getContext("2d").createLinearGradient(0, 250, 0, 0);
+	    gradientBack.addColorStop(0, "rgba(157,202,131,1)");
+	    gradientBack.addColorStop(0.03, "rgba(157,202,131,1)");
+	    
+	    gradientBack.addColorStop(0.04, "rgba(249,195,24,1)");
+	    gradientBack.addColorStop(0.12, "rgba(249,195,24,1)");
+	    
+	    gradientBack.addColorStop(0.13, "rgba(254,99,9,1)");
+	    gradientBack.addColorStop(0.23, "rgba(254,99,9,1)");
+	    
+	    gradientBack.addColorStop(0.24, "rgba(252,14,14,1)");
+	    gradientBack.addColorStop(0.34, "rgba(252,14,14,1)");
+	    
+	    gradientBack.addColorStop(0.35, "rgba(220,4,4,1)");
+	    gradientBack.addColorStop(0.55, "rgba(220,4,4,1)");
+	    
+	    gradientBack.addColorStop(0.56, "rgba(164,0,0,1)");
+	    gradientBack.addColorStop(1, "rgba(164,0,0,1)");
+	    ctx.fillStyle = gradientBack;
+	    ctx.fillRect(chartArea.left, chartArea.bottom,
+	      chartArea.right - chartArea.left, chartArea.top - chartArea.bottom);
+	  }
+	};
+    const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+                labels: ['1/1','1/2','1/3','1/4','1/5','1/6','1/7','1/8','1/9','1/10','1/11','1/12','1/13','1/14','1/15'],
+                datasets: [			
+                    {
+                        label: '공기질',
+                        yAxisID: 'YL',
+                        data: [0, 50, 100, 150, 200, 300, 500, 347, 390, 405, 207,248,288,209,148],
+                        borderWidth: 2,
+                        borderColor:'red',
+                        tension: 0.4,
+                        pointRadius:3,
+                        hoverRadius:8,
+                        pointBackgroundColor:'red',
+                        fill: true,
+                        backgroundColor:'#f1f1f190'
+                    }
+                ]
+        },
+        options: {
+            maintainAspectRatio: false, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
+            responsive: true,
+            onResize: function () {
+                console.log('onResize');
+            },
+            legend:{
+                display:false,
+            },
+            scales: {
+                yAxes: [{
+                    id: 'YL',
+                    position: 'left',
+                    type: 'linear',
+                    ticks:{
+                        min:0,
+                        max:500,
+                        stepSize:50,
+                        // fontColor:'#ff0000',
+                    }
+                }]
+            },
+        },
+        plugins: [GradientBgPlugin]
+
+    });
+</script>
+
+
+
+<script type="text/javascript">// 건강지수 차트
+    const ctx1 = document.getElementById('myChartHealth');
+	var GradientBgPlugin2 = {
+			  beforeDraw: function(chart, args, options) {
+			    const ctx = chart.ctx;
+			    const canvas = chart.canvas;
+			    const chartArea = chart.chartArea;
+			    // Chart background
+			    var gradientBack = canvas.getContext("2d").createLinearGradient(0, 250, 0, 0);
+			    gradientBack.addColorStop(0, "rgba(157,202,131,1)");
+			    gradientBack.addColorStop(0.12, "rgba(157,202,131,1)");
+			    
+			    gradientBack.addColorStop(0.13, "rgba(249,195,24,1)");
+			    gradientBack.addColorStop(0.33, "rgba(249,195,24,1)");
+			    
+			    gradientBack.addColorStop(0.34, "rgba(254,99,9,1)");
+			    gradientBack.addColorStop(0.54, "rgba(254,99,9,1)");
+			    
+			    gradientBack.addColorStop(0.55, "rgba(252,14,14,1)");
+			    gradientBack.addColorStop(0.75, "rgba(252,14,14,1)");
+			    
+			    gradientBack.addColorStop(0.76, "rgba(164,0,0,1)");
+			    gradientBack.addColorStop(1, "rgba(164,0,0,1)");
+			    ctx.fillStyle = gradientBack;
+			    ctx.fillRect(chartArea.left, chartArea.bottom,
+			      chartArea.right - chartArea.left, chartArea.top - chartArea.bottom);
+			  }
+			};
+    const myChart1 = new Chart(ctx1, {
+      type: 'line',
+      data: {
+            labels: ['1/1','1/2','1/3','1/4','1/5','1/6','1/7','1/8','1/9','1/10','1/11','1/12','1/13','1/14','1/15'],
+            datasets: [
+                {
+                    label: '건강지수',
+                    yAxisID: 'YL',
+                    data: [0,0,0,1,0,4,3,5,2,2,2,3,3,2,1],
+                    borderWidth: 2,
+                    borderColor:'#ff9b00',
+                    tension: 0.4,
+                    pointRadius:3,
+                    hoverRadius:8,
+                    pointBackgroundColor:'#ff9b00',
+                    fill: true,
+                    backgroundColor:'#f1f1f190'
+                }
+            ]
+        },
+      options: {
+        maintainAspectRatio: false, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
+        responsive: true,
+        onResize: function () {
+            console.log('onResize');
+        },
+        legend:{
+            display:false,
+        },
+        scales: {
+            yAxes: [{
+                id: 'YL',
+                position: 'left',
+                type: 'linear',
+                ticks:{
+                    min:0,
+                    max:5,
+                    stepSize:1,
+                    // fontColor:'#ff0000',
+                }
+            }]
+        }
+      },
+      plugins: [GradientBgPlugin2]
+    });
+</script>
+
+
+
+<script type="text/javascript">//환경 차트
+	const ctx2 = document.getElementById('myChartEnv');
+    const myChart2 = new Chart(ctx2, {
+      type: 'bar',
+      data: {
+            labels: ['1/1','1/2','1/3','1/4','1/5','1/6','1/7','1/8','1/9','1/10','1/11','1/12','1/13','1/14','1/15'],
+            datasets: [			
+                {
+                    label: '온도',
+                    yAxisID: 'YL',
+                    data: [[-3, 5], [2, 10], [1, 3], [-4, -1], [4, 8],[-3, 5], [2, 10], [1, 3], [-4, -1], [4, 8],[-3, 5], [2, 10], [1, 3], [-4, -1], [4, 8]],
+//                     borderWidth: 2,
+                    backgroundColor:'#ff0000'
+                },
+                {
+                    label: '습도',
+                    yAxisID: 'YR',
+                    data: [[70, 53], [1, 3], [-4, -1], [4, 8],[-3, 5],[2, 10], [1, 3], [-4, -1], [4, 8],[-3, 5],[2, 10], [1, 3], [-4, -1], [4, 8],[-3, 5]],
+//                     borderWidth: 2,
+                    backgroundColor:'#0037ff'
+                }
+            ]
+        },
+      options: {
+        maintainAspectRatio: false, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
+        responsive: true,
+        onResize: function () {
+            console.log('onResize');
+        },
+        interaction: {
+          mode: 'index',
+          intersect: false,
+        },
+        stacked: false,
+        legend:{
+            display:false,
+        },
+        plugins: {
+        },
+        scales: {
+            yAxes: [{
+                id: 'YL',
+                position: 'left',
+                type: 'linear',
+                ticks:{
+                    // min:0,
+                    // max:500,
+                    // stepSize:50,
+                    fontColor:'#ff0000',
+                }
+            }, {
+                id: 'YR',
+                position: 'right',
+                type: 'linear',
+                ticks:{
+                    // min:0,
+                    // max:5,
+                    // stepSize:1,
+                    fontColor:'#0037ff',
+                },
+            }]
+        }
+      },
+    });
+</script>
+
+
+
+
+<!--환경 차트-->
+<!-- <script type="text/javascript">
+    const ctx2 = document.getElementById('myChartEnv');
+    const myChart2 = new Chart(ctx2, {
+      type: 'line',
+      data: {
+            labels: ['1/1','1/2','1/3','1/4','1/5','1/6','1/7','1/8','1/9','1/10','1/11','1/12','1/13','1/14','1/15'],
+            datasets: [			
+                {
+                    label: '온도',
+                    yAxisID: 'YL',
+                    data: [-10,-8,-3,0,1,3,5,3,7,8,10,18,22,28,35],
+                    borderWidth: 2,
+                    borderColor:'#ff0000',
+                    tension: 0.4,
+                    fill: false,
+                    pointRadius:3,
+                    hoverRadius:8,
+                    pointBackgroundColor:'#ff0000'
+                },
+                {
+                    label: '습도',
+                    yAxisID: 'YR',
+                    data: [37,34,28,19,40,46,58,24,10,26,59,68,98,99,50],
+                    borderWidth: 2,
+                    borderColor:'#0037ff',
+                    tension: 0.4,
+                    fill:false,
+                    pointRadius:3,
+                    hoverRadius:8,
+                    pointBackgroundColor:'#0037ff'
+                    // backgroundColor:'#ff9b0030'
+                }
+            ]
+        },
+      options: {
+        maintainAspectRatio: false, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
+        responsive: true,
+        onResize: function () {
+            console.log('onResize');
+        },
+        interaction: {
+          mode: 'index',
+          intersect: false,
+        },
+        stacked: false,
+        legend:{
+            display:false,
+        },
+        plugins: {
+        },
+        scales: {
+            yAxes: [{
+                id: 'YL',
+                position: 'left',
+                type: 'linear',
+                ticks:{
+                    // min:0,
+                    // max:500,
+                    // stepSize:50,
+                    fontColor:'#ff0000',
+                }
+            }, {
+                id: 'YR',
+                position: 'right',
+                type: 'linear',
+                ticks:{
+                    // min:0,
+                    // max:5,
+                    // stepSize:1,
+                    fontColor:'#0037ff',
+                },
+            }]
+        }
+      },
+    });
+</script> -->
+
+
+<script type="text/javascript">//유해가스 흡연 안전 침입 차트
+    const ctx3 = document.getElementById('myChartComp');
+    const myChart3 = new Chart(ctx3, {
+      type: 'line',
+      data: {
+            labels: ['1/1','1/2','1/3','1/4','1/5','1/6','1/7','1/8','1/9','1/10','1/11','1/12','1/13','1/14','1/15'],
+            datasets: [			
+                {
+                    label: '유해가스',
+                    data: [0,1,3,2,0,0,4,3,0,2,0,1,5,6,5],
+                    borderWidth: 2,
+                    borderColor:'#0037ff',
+                    tension: 0.4,
+                    fill: false,
+                    pointRadius:1,
+                    hoverRadius:8,
+                    pointBackgroundColor:'#0037ff'
+                },
+                {
+                    label: '흡연',
+                    data: [5,4,6,2,0,3,6,2,0,0,2,1,3,1,0],
+                    borderWidth: 2,
+                    borderColor:'#12b500',
+                    tension: 0.4,
+                    fill:false,
+                    pointRadius:1,
+                    hoverRadius:8,
+                    pointBackgroundColor:'#12b500'
+                },
+                {
+                    label: '안전',
+                    data: [3,3,4,2,3,5,2,0,1,0,0,0,3,1,2],
+                    borderWidth: 2,
+                    borderColor:'#ff0000',
+                    tension: 0.4,
+                    fill:false,
+                    pointRadius:1,
+                    hoverRadius:8,
+                    pointBackgroundColor:'#ff0000'
+                },
+                {
+                    label: '침입',
+                    data: [1,1,1,2,2,1,3,1,2,0,0,2,1,0,2],
+                    borderWidth: 2,
+                    borderColor:'#ab00ff',
+                    tension: 0.4,
+                    fill:false,
+                    pointRadius:1,
+                    hoverRadius:8,
+                    pointBackgroundColor:'#ab00ff'
+                }
+            ]
+        },
+      options: {
+        maintainAspectRatio: false, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
+        responsive: true,
+        onResize: function () {
+            console.log('onResize');
+        },
+        interaction: {
+          mode: 'index',
+          intersect: false,
+        },
+        stacked: false,
+        legend:{
+            display:false,
+        },
+        plugins: {
+        },
+        
+      },
+    });
+</script>
+
+<script type="text/javascript">//소음 차트
+    const ctx4 = document.getElementById('myChartNois');
+    const myChart4 = new Chart(ctx4, {
+        type: 'line',
+        data: {
+                labels: ['1/1','1/2','1/3','1/4','1/5','1/6','1/7','1/8','1/9','1/10','1/11','1/12','1/13','1/14','1/15'],
+                datasets: [			
+                    {
+                        label: '소음',
+                        yAxisID: 'YL',
+                        data: [46,35,29,39,47,45,38,50,56,67,45,52,89,78,29],
+                        borderWidth: 2,
+                        borderColor:'#0095ff',
+                        tension: 0,
+                        pointRadius:6,
+                        hoverRadius:8,
+                        pointBackgroundColor:'#0095ff',
+                        fill: true,
+                        backgroundColor:'#f1f1f190'
+                    }
+                ]
+        },
+        options: {
+            maintainAspectRatio: false, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
+            responsive: true,
+            onResize: function () {
+                console.log('onResize');
+            },
+            legend:{
+                display:false,
+            },
+            scales: {
+                yAxes: [{
+                    id: 'YL',
+                    position: 'left',
+                    type: 'linear',
+                }]
+            },
+        },
+
+
+    });
+</script>
+</html>

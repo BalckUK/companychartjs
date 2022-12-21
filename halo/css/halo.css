@@ -1,0 +1,588 @@
+@charset "utf-8";
+
+/* 로그인 */
+body {display:flex}
+body.index {position:relative; display:flex; justify-content:center; align-items:center; padding:0 !important;
+  background-image:url(../img/login_ptn.png), linear-gradient(178deg, #3f5655, #2b3333); background-size:cover}
+body.index .loginContainer {display:flex; flex-direction:column; align-items:center; min-width:400px}
+body.index .loginContainer article {width:100%}
+body.index .sys_tit {width:100%; font-weight:bold; text-align:center; color:#f1f1f1; text-shadow:0 4px 6px rgb(0 0 0 / 30%); margin:0 0 60px}
+body.index .sys_tit > .ciEWP img {width:38%; height:auto; margin-bottom:30px}
+body.index .sys_tit > .ciTit {font-size:28px; text-align:center; white-space:nowrap}
+
+
+@-webkit-keyframes blink1 {from {opacity:0.2} to {opacity:1}}
+.blink {animation-name:blink1; animation-duration:1s; animation-delay:0s; animation-iteration-count:infinite; animation-fill-mode:both; animation-timing-function:ease}
+.blinkBlur {background-color:#fc0000 !important; color:#fff; animation-name:blink1; animation-duration:0.5s; animation-delay:0s; animation-iteration-count:infinite; animation-fill-mode:both; animation-timing-function:ease; filter:blur(6px)}
+
+
+
+body.index .loginBox {width:100%; z-index:1; position:relative; margin-bottom:40px; animation-name:blink1; animation-duration:1s; animation-delay:0s; animation-fill-mode:both; animation-timing-function:ease}
+body.index .loginBox .inputDiv {display:flex; flex-direction:row; background-color:#fff; border-radius:3px; align-items:center; margin-bottom:12px; border:1px solid #dcdcdc}
+body.index .loginBox .inputDiv input {border:none !important; flex:1; }
+body.index .loginBox .inputDiv label {margin:0 6px 0 10px; width:70px; font-size:14px; letter-spacing:0; border-right:1px solid #aaa; text-align:left}
+body.index .loginBox .btnLogin {width:100%}
+body.index .loginBox .loginFuction {text-align:center; margin:16px 0 20px; color:#000}
+body.index .copyright {width:100%; text-align:center; font-size:11px}
+
+body.index .waitingroom .ciSvg svg {width:60%}
+body.index .waitingroom .ment {text-align:center; margin-top:3em}
+body.index .waitingroom .ment p {font-size:1.2em; margin-bottom:1.2em; font-family:'Pretendard'; color:#034364}
+body.index .waitingroom .ment .loginBox {margin-top:3em}
+
+
+body.index .loginTabDiv {width:100%; display:flex; flex-direction:row; font-size:14px; margin-bottom:12px}
+body.index .loginTabDiv li {width:150px; list-style:none; padding:13px 10px; text-align:center; background-color:rgba(0,0,0,0.2); cursor:pointer; margin-bottom:-1px}
+body.index .loginTabDiv li:first-child {border-top-left-radius:3px; border-bottom-left-radius:3px}
+body.index .loginTabDiv li:last-child {border-top-right-radius:3px; border-bottom-right-radius:3px}
+body.index .loginTabDiv li.active {background-Color:#2592f3; color:#fff}
+
+@media screen and (max-width:300px) {
+  .loginContainer {width:94% !important}
+}
+
+/* 공통  header  GNB  */
+#header {height:70px; background-color:#565656; display:flex}
+#header section {width:100%; position:absolute}
+#header section .ciTit {flex:1; display:flex; flex-direction:row; align-items:center; justify-content:space-between; box-shadow:0 10px 20px rgb(0 0 0 / 30%)}
+#header section .ciTit .ci {width:70px; height:70px}
+#header section .ciTit .tit {display:inline-flex; align-items:center; height:70px; font-weight:700; color:#fafafa}
+#header section .ciTit .option {margin-right:20px; display:inline-flex; align-items:center; gap:20px; font-size:1rem; color:#b1b9b9; font-weight:600;}
+#header section .ciTit .option  .datetime::before {content:'\f017'; font-family:'fa'; font-weight:500; margin-right:8px}
+#header section .ciTit .option button {font-size:24px; color:#ccc}
+#header ul {display:inline-flex; flex-direction:column}
+#header li {display:flex; flex-direction:column; align-items:center; width:70px; height:70px;  color:#6a7878; transition:all 0.3s ease}
+#header li:hover {color:#ccc}
+#header li .icon {flex:1; display:flex; align-items:center; justify-content:center; text-shadow:0 2px 4px rgba(0,0,0,0.3)}
+
+#header li.home .icon::before {content:'\f390'}
+#header li.history .icon::before {content:'\f1da'}
+#header li.stat .icon::before {content:'\f200'}
+#header li.setting .icon::before {content:'\f7d9'}
+#header li.user .icon::before {content:'\f500'}
+#header li.logout .icon::before {content:'\f011'}
+#header li .icon::before {font-family:'fa'; font-weight:700; font-size:2em}
+#header li .menuTit {display:none}
+#header li.logout .menuTit {display:block}
+#header li.logout .menuTit span {margin-top:-10px; display:block; padding:0 0 10px; font-weight:600}
+
+body#home #header li.home,
+body#history #header li.history,
+body#stat #header li.stat,
+body#setting #header li.setting,
+body#user #header li.user {background-color:#212626; color:#829d9c; text-shadow:0 4px 4px rgba(0,0,0,0.7)}
+
+/* 데시보드 */
+body.home {flex-direction:column}
+body .contentBox {flex:1; display:flex; flex-direction:row; overflow:auto}
+body .contentBox .aside {width:70px; background:linear-gradient(0deg, rgba(37,43,43,1) 0%, rgba(52,66,66,1) 100%); display:flex}
+body .contentBox .content {flex:1; display:flex; flex-direction:row; gap:30px; overflow:hidden; z-index:1}
+body.home .contentBox .content .leftDiv {min-width:670px; display:flex; flex-direction:column; padding:40px 0 40px 40px; gap:30px; overflow-y:auto}
+body.home .contentBox .leftDiv .totSection {display:flex; flex-direction:row; gap:2rem;}
+body.home .totSection .storageDiv {flex:1 0 245px; display:flex; flex-direction:column}
+body.home .totSection .storageDiv .tit {font-weight:600}
+body.home .totSection .storageDiv .tit span {font-weight:200}
+body.home .totSection ul {flex:1 0 326px; display:flex; flex-direction:row;  gap:1rem}
+body.home .totSection li {flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem; position:relative}
+body.home .totSection li .tit {font-weight:500; white-space:nowrap}
+body.home .totSection li .count {font-size:2em; font-weight:400}
+body.home .totSection li+li::before {content:''; display:block; width:2px; height:30%; background-color:#00000061; border-right:1px solid #ffffff45; position:absolute; left:-0.5rem}
+
+.graphBarS {width:100%; height:16px; border-radius:50px; 
+  box-shadow:inset 3px 0px 6px rgb(0 0 0 / 30%), inset -2px 0px 2px rgb(0 0 0 / 100%); border:1px solid #292929;
+  background:rgb(69,155,238); background:linear-gradient(90deg, rgba(69,155,238,1) 70%, rgba(255,0,0,1) 90%); color:#fff; font-weight:300; font-size:0.75em; position:relative; overflow:hidden}
+.graphBarS .maskBar {position:absolute; right:0; top:0; display:flex; max-width:calc( 100% - 40px ); height:100%; background-color:#2a2a2a; box-shadow:inset 0 2px 6px rgb(0 0 0 / 30%); transition:all 0.3s ease}
+.graphBarS .maskBar span {width:40px; text-align:right; margin:auto auto auto -42px}
+
+body.home .contentBox .leftDiv > .boxSection {flex:1; display:flex; flex-direction:row; gap:30px; overflow:auto}
+body.home .contentBox .leftDiv > .boxSection .listSection {flex:1; display:flex; flex-direction:column; gap:1em; padding:1em; align-self:stretch; border-radius:1em; background-color:#2a2c2d80}
+body.home .contentBox .leftDiv > .boxSection .listSection .titDiv {display:flex; align-items:center}
+body.home .contentBox .leftDiv > .boxSection .listSection .titDiv .tit {font-size:1.35em; font-weight:500}
+body.home .contentBox .leftDiv > .boxSection .listSection .titDiv .option {margin-left:auto; display:flex; gap:10px}
+body.home .listSection .gridDiv {flex:1; display:flex; flex-direction:column; gap:3px; overflow:auto}
+body.home .listSection .gridDiv .row {padding:0.85em 0 0.85em 1.5em; background-color:#4b5e5d; color:#d9e0e0; cursor:pointer; position:relative}
+body.home .listSection .gridDiv .row .box {width:8px; position:absolute; top:0; left:0; height:100%}
+body.home .listSection .gridDiv .row .theme {font-size:1.1em; font-weight:500}
+body.home .listSection .gridDiv .row .sensorName {font-weight:300; margin-top:0.5em}
+body.home .listSection .gridDiv .row .date {font-weight:300; position:absolute; top:10px; right:10px}
+
+.row.t1 .theme::before {content:'공기질'}
+/* .row.t1.v1 .theme::after {content:'좋음'; margin-left:10px} */
+.row.t1.v2 .theme::after {content:'보통'; margin-left:10px}
+.row.t1.v3 .theme::after {content:'주의'; margin-left:10px}
+.row.t1.v4 .theme::after {content:'나쁨'; margin-left:10px}
+.row.t1.v5 .theme::after {content:'매우나쁨'; margin-left:10px}
+.row.t1.v6 .theme::after {content:'위험'; margin-left:10px}
+.row.t1.v1 .box {background-color:#6a9253 !important; background:linear-gradient(135deg, rgba(164,209,137,1) 0%, rgba(106,146,83,1) 100%) !important}
+.row.t1.v2 .box {background-color:#ffc100 !important; background:linear-gradient(135deg, rgba(231,203,117,1) 0%, rgba(255,193,0,1) 100%) !important}
+.row.t1.v3 .box {background-color:#fe5e00 !important; background:linear-gradient(135deg, rgba(255,127,51,1) 0%, rgba(254,94,0,1) 100%) !important}
+.row.t1.v4 .box {background-color:#fc0000 !important; background:linear-gradient(135deg, rgba(255,75,75,1) 0%, rgba(252,0,0,1) 100%) !important}
+.row.t1.v5 .box {background-color:#c40000 !important; background:linear-gradient(135deg, rgba(232,6,6,1) 0%, rgba(196,0,0,1) 100%) !important}
+.row.t1.v6 .box {background-color:#870000 !important; background:linear-gradient(135deg, rgba(180,0,0,1) 0%, rgba(135,0,0,1) 100%) !important}
+
+.row.t2 .theme::before {content:'건강지수'}
+/* .row.t2.v1 .theme::after {content:'좋음'; margin-left:10px} */
+.row.t2.v2 .theme::after {content:'보통'; margin-left:10px}
+.row.t2.v3 .theme::after {content:'나쁨'; margin-left:10px}
+.row.t2.v4 .theme::after {content:'심각'; margin-left:10px}
+.row.t2.v5 .theme::after {content:'위험'; margin-left:10px}
+.row.t2.v1 .box {background-color:#6a9253 !important; background:linear-gradient(135deg, rgba(164,209,137,1) 0%, rgba(106,146,83,1) 100%) !important}
+.row.t2.v2 .box {background-color:#ffc100 !important; background:linear-gradient(135deg, rgba(231,203,117,1) 0%, rgba(255,193,0,1) 100%) !important}
+.row.t2.v3 .box {background-color:#fe5e00 !important; background:linear-gradient(135deg, rgba(255,127,51,1) 0%, rgba(254,94,0,1) 100%) !important}
+.row.t2.v4 .box {background-color:#fc0000 !important; background:linear-gradient(135deg, rgba(255,75,75,1) 0%, rgba(252,0,0,1) 100%) !important}
+.row.t2.v5 .box {background-color:#870000 !important; background:linear-gradient(135deg, rgba(180,0,0,1) 0%, rgba(135,0,0,1) 100%) !important}
+
+/* .row.t1.v5, */
+/* .row.t2.v4 {animation-name:blink1; animation-duration:1s; animation-delay:0s; animation-iteration-count:infinite; animation-fill-mode:both} */
+.row.t1.v6,
+.row.t2.v5,
+.row.t1.v6,
+.row.t2.v5 {color:yellow !important; font-weight:300 !important; /* animation-name:blink1; animation-duration:0.5s; animation-delay:0s; animation-iteration-count:infinite; animation-fill-mode:both */}
+
+.row.t3 .theme::before {content:'환 경'}
+.row.t4 .theme::before {content:'유해가스'}
+.row.t5 .theme::before {content:'흡 연'}
+.row.t6 .theme::before {content:'안 전'}
+.row.t7 .theme::before {content:'소 음'}
+.row.t8 .theme::before {content:'침 입'}
+.row.t3.v2 .box ,
+.row.t4.v2 .box ,
+.row.t5.v2 .box ,
+.row.t6.v2 .box ,
+.row.t7.v2 .box ,
+.row.t8.v2 .box {background-color:#dd2323 !important; background:linear-gradient(135deg, rgba(235,53,53,1) 0%, rgba(221,35,35,1) 100%) !important}
+
+.row.t1.confirmed,
+.row.t2.confirmed,
+.row.t3.confirmed,
+.row.t4.confirmed,
+.row.t5.confirmed,
+.row.t6.confirmed,
+.row.t7.confirmed,
+.row.t8.confirmed
+{opacity:35%; animation-name:unset}
+
+/* body.home .contentBox .leftDiv > .boxSection > .boxSection {flex:1 1 326px; display:flex; flex-direction:column; gap:30px; align-self:stretch; overflow-y:auto; overflow-x:hidden} */
+body.home .contentBox .leftDiv > .boxSection > .boxSection {flex:1.3; display:flex; flex-direction:column; gap:30px; overflow:hidden}
+body.home .contentBox .leftDiv > .boxSection > .boxSection .titDiv {display:flex; align-items:center; white-space:nowrap}
+body.home .contentBox .leftDiv > .boxSection > .boxSection .titDiv .tit {font-size:1.35em; font-weight:500; display:flex; align-items:center; gap:6px}
+body.home .contentBox .leftDiv > .boxSection > .boxSection .titDiv .tip {display:flex; gap:1em; margin-left:1em}
+
+body.home .statSection1 {flex:1; display:flex; width:100%; flex-direction:column; gap:1em}
+body.home .statSection1 .bodyDiv {flex:1; display:flex; flex-flow:row wrap; gap:3px}
+body.home .statSection1 .row {flex:1 1 33.3%; position:relative; padding:0; background-color:#2a2c2d8f; color:#8e9e9e; border-radius:0.3em}
+body.home .statSection1 .row span {font-size:1.5em; font-weight:400; display:block; position:absolute; top:44%; left:40%}
+body.home .statSection1 .row::before {content:''; width:40%; height:100%; position:absolute; top:0; left:0; background-size:38%; background-repeat:no-repeat; background-position:center; filter:invert(100%); -webkit-filter:invert(100%); opacity:30%}
+body.home .statSection1 .t1::before {background-image:url('../img/t1.svg')}
+body.home .statSection1 .t2::before {background-image:url('../img/t2.svg')}
+body.home .statSection1 .t3::before {background-image:url('../img/t3.svg')}
+body.home .statSection1 .t4::before {background-image:url('../img/t4.svg')}
+body.home .statSection1 .t5::before {background-image:url('../img/t5.svg')}
+body.home .statSection1 .t6::before {background-image:url('../img/t6.svg')}
+body.home .statSection1 .t7::before {background-image:url('../img/t7.svg')}
+body.home .statSection1 .t8::before {background-image:url('../img/t8.svg')}
+
+body.home .statSection1 .row::after {font-size:12px; position:absolute; bottom:58%; left:40%; font-weight:500}
+body.home .statSection1 .t1::after {content:'공기질'}
+body.home .statSection1 .t2::after {content:'건강지수'}
+body.home .statSection1 .t3::after {content:'환 경'}
+body.home .statSection1 .t4::after {content:'유해가스'}
+body.home .statSection1 .t5::after {content:'흡 연'}
+body.home .statSection1 .t6::after {content:'안 전'}
+body.home .statSection1 .t7::after {content:'소 음'}
+body.home .statSection1 .t8::after {content:'침 입'}
+
+body.home .statSection2 {flex:1; display:flex; width:100%; flex-direction:column; gap:1em}
+body.home .statSection2 .bodyDiv {flex:1; display:flex; flex-direction:column; gap:2px}
+body.home .statSection2 .row {flex:1 1 auto; background-color:rgb(0 0 0 / 17%); color:#ccc; font-weight:400; overflow:hidden}
+body.home .statSection2 .row:first-child {border-radius:0.3rem 0.3rem 0 0}
+body.home .statSection2 .row:last-child {border-radius:0 0 0.3rem 0.3rem}
+body.home .statSection2 .row .innerBar {height:100%; position:relative; background-color:#54778b; padding:0.2em 0 1.0em 0.2em; color:#a9bdbc; transition: ease-out 0.4s;}
+body.home .statSection2 .row:nth-child(1) .innerBar {background-color:#548b8b; color:#b8e2d9}
+body.home .statSection2 .row:nth-child(2) .innerBar {background-color:#4d7984}
+body.home .statSection2 .row:nth-child(3) .innerBar {background-color:#417577}
+body.home .statSection2 .row:nth-child(4) .innerBar {background-color:#346266}
+body.home .statSection2 .row:nth-child(5) .innerBar {background-color:#2d515c}
+
+body.home .statSection2 .row .innerBar .sensorName {font-size:1.1em; white-space:nowrap}
+body.home .statSection2 .row .innerBar .count {position:absolute; right:2px; bottom:1px; font-size:1.2em; font-weight:300}
+
+body.home .statSection3 {flex:1; display:flex; width:100%; flex-direction:column; gap:1em}
+body.home .statSection3 .bodyDiv {flex:0 1 80%; display:flex}
+
+body.home iframe {width:100%; height:100%; border:unset; overflow:hidden}
+
+.monitoringDiv {flex:1; display:flex; flex-direction:column; gap:4px; overflow:hidden; background-color:rgb(42 44 45 / 34%); padding:20px 20px 20px 30px; box-shadow:inset 0 10px 20px rgb(0 0 0 / 30%);}
+.monitoringDiv .titDiv {display:flex; align-items:center; white-space:nowrap; margin:12px 0}
+.monitoringDiv .titDiv .tit {font-size:1.35em; font-weight:500; display:flex; align-items:center; gap:10px}
+.monitoringDiv .titDiv .option {margin-left:auto; display:flex; align-items:Center; gap:10px}
+
+#cellContainer .group {display:flex; flex-flow:row wrap; gap:4px; padding:0}
+#cellContainer .group .row {max-width:250px;  width:30%; border-radius:3px; position:relative; background-color:#6a9253; background:linear-gradient(135deg, rgba(164,209,137,1) 0%, rgba(106,146,83,1) 100%); color:#000; overflow:hidden}
+#cellContainer .group .row::before {content:''; padding-top:100%; display:block}
+#cellContainer .group .row .box {position:absolute; top:0; bottom:0; right:0; left:0; padding:8px 4px 8px 8px; overflow:hidden}
+#cellContainer .group .row .box .sensorName {font-weight:500}
+#cellContainer .group .row .box .theme {font-size:1.8rem; font-weight:700; white-space:nowrap; position:absolute; bottom:4%}
+#cellContainer .group .row .box .theme::before {display:block}
+#cellContainer .group .row .box .theme::after {margin:unset; font-size:1.4rem}
+
+#cellContainer .group .row.t1 .box::before {background-image:url('../img/t1.svg')}
+#cellContainer .group .row.t2 .box::before {background-image:url('../img/t2.svg')}
+#cellContainer .group .row.t3 .box::before {background-image:url('../img/t3.svg')}
+#cellContainer .group .row.t4 .box::before {background-image:url('../img/t4.svg')}
+#cellContainer .group .row.t5 .box::before {background-image:url('../img/t5.svg')}
+#cellContainer .group .row.t6 .box::before {background-image:url('../img/t6.svg')}
+#cellContainer .group .row.t7 .box::before {background-image:url('../img/t7.svg')}
+#cellContainer .group .row.t8 .box::before {background-image:url('../img/t8.svg')}
+#cellContainer .group .row .box::before {content:''; width:100%; height:100%; background-position:90% 90%; background-repeat:no-repeat; background-size:30%; opacity:16%; position:absolute; top:0; left:0}
+#cellContainer .group .row.t1.v6 .box::before {background-image:url('../img/t1Y.svg'); opacity:50%}
+#cellContainer .group .row.t2.v5 .box::before {background-image:url('../img/t2Y.svg'); opacity:50%}
+#cellContainer .group .row.t1.v6 .box .sensorName,
+#cellContainer .group .row.t2.v5 .box .sensorName {font-weight:300}
+#cellContainer .group .row.t1.v6 .box .theme,
+#cellContainer .group .row.t2.v5 .box .theme {font-weight:500}
+
+#cellContainer .group .row .boxOnly::before {background-size:54% !important; background-position:center center !important}
+#cellContainer .group .row.offline {background-color:#6b6b6b !important; background:linear-gradient(135deg, rgba(140,140,140,1) 0%, rgba(107,107,107,1) 100%); color:#000; overflow:hidden}
+#cellContainer .group .row.offline::after {content:''; display:block; width:200%; height:2px; background-color:#2a2c2d; transform:translate(-50%) rotate(-45deg); position:absolute; top:50%; left:50%}
+#cellContainer .group .row.offline .theme::after {content:'오프라인'}
+
+#mapContainer {padding:unset; position:relative}
+#mapContainer::before {content:'\f0c2'; font-family:'fa'; font-size:20vh; color:#ffffff06; position:absolute; top:5%; left:8%}
+#mapContainer::after {content:'\f0c2'; font-family:'fa'; font-size:14vh; color:#ffffff08; position:absolute; top:25%; left:76%}
+
+#mapContainer .titDiv {margin:32px 20px 12px 30px}
+#mapContainer .titDiv .backBtn {font-size: 2em; margin-right: 10px}
+
+#mapContainer > .contentBox {display:flex; align-items:center; justify-content:center; gap:1px; z-index:1}
+#mapContainer > .contentBox .buildingWrap {display:flex; flex-direction:column; gap:1px}
+#mapContainer > .contentBox .buildingWrap .row {color:#000; font-weight:500; cursor:pointer}
+#mapContainer > .contentBox .buildingWrap .row.under {filter: brightness(0.7)}
+#mapContainer > .contentBox .buildingWrap .row > .box {display:flex; align-items:center; justify-content:space-between; height:40px; width:20vw; min-width:120px; padding:0 10%; background-color:#88bd69; color:inherit}
+#mapContainer > .contentBox .buildingWrap .row > .box .sensors {background-color:#00000033; padding:4px; border-radius:8px; font-weight:600}
+
+#mapContainer .imgWrap {position:relative; width:90%}
+#mapContainer .imgWrap .mapImg {width:100%; height:auto}
+#mapContainer .haloSensor {position:absolute; top:0; left:0; cursor:pointer}
+
+
+
+
+/* 센서 상세보기 event_detail */
+body {flex-direction:column}
+body.detail .contentBox {flex:1; display:flex; flex-direction:row; overflow:auto;}
+body.detail .contentBox .content {flex:1; display:flex; flex-direction:row; gap:2%; overflow:auto; z-index:1}
+body.detail .leftDiv {flex:1; display:flex; flex-direction:column; padding:40px 0 40px 40px; gap:30px}
+body.detail .rightDiv {flex:1.5; display:flex; flex-direction:column; overflow:auto; padding:2vmin}
+
+body.detail .leftDiv .titSection {display:flex; align-items:center}
+body.detail .leftDiv .titSection .backBtn {font-size:2em; margin-right:10px}
+body.detail .leftDiv .titSection .pageTit {font-size:1.6em; font-weight:500; display:flex; gap:6px; flex-direction:column; align-items:start}
+body.detail .leftDiv .titSection .pageTit span {white-space:nowrap}
+body.detail .leftDiv .titSection .pageTit span:first-child {font-size:0.85em}
+body.detail .leftDiv .titSection .option {margin-left:60px; display:flex; gap:20px; font-size:2em}
+body.detail .leftDiv .titSection .option .fan {color:#656565; position:relative}
+body.detail .leftDiv .titSection .option .fan::after {content:'OFF'; font-weight:900; font-size:0.25em; position:absolute; bottom:0; right:-12px}
+body.detail .leftDiv .titSection .option .fan.on i.fa-fan {color:#eee;-webkit-animation-name:fa-spin;  animation-name:fa-spin;-webkit-animation-delay:var(--fa-animation-delay, 0); animation-delay:var(--fa-animation-delay, 0);-webkit-animation-direction:var(--fa-animation-direction, normal); animation-direction:var(--fa-animation-direction, normal);-webkit-animation-duration:var(--fa-animation-duration, 2s); animation-duration:var(--fa-animation-duration, 2s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count, infinite); animation-iteration-count:var(--fa-animation-iteration-count, infinite);-webkit-animation-timing-function:var(--fa-animation-timing, linear); animation-timing-function:var(--fa-animation-timing, linear)}
+body.detail .leftDiv .titSection .option .fan.on::after {content:'ON'}
+
+body.detail .leftDiv .listSection {display:flex; flex-direction:column; gap:1em; overflow:auto}
+body.detail .leftDiv .section .titDiv {display:flex; align-items:center}
+body.detail .leftDiv .section .titDiv .tit {font-size:1.35em; font-weight:500; display:flex; align-items:center; gap:10px}
+body.detail .leftDiv .section .titDiv .option {margin-left:auto; display:flex; gap:10px}
+body.detail .leftDiv .listSection .gridDiv {flex:1; overflow:auto; display:flex; flex-direction:column; gap:4px; background-color:#343f3f}
+body.detail .leftDiv .listSection .gridDiv .gridHeader {display:flex; align-items:center; border-radius:0.3rem 0.3rem 0 0}
+body.detail .leftDiv .listSection .gridDiv .gridHeader > * {padding:6px}
+body.detail .leftDiv .listSection .gridDiv .gridHeader > *:first-child {padding:0; width:8px}
+body.detail .leftDiv .listSection .gridDiv .gridBody {flex:1; display:flex; flex-direction:column; gap:2px; overflow:auto}
+body.detail .leftDiv .listSection .gridDiv .row {display:flex; align-items:flex-start; font-weight:300; background-color:#4b5e5d; color:#d9e0e0}
+body.detail .leftDiv .listSection .gridDiv .row > * {padding:6px}
+body.detail .leftDiv .listSection .gridDiv .row .box {width:8px; height:100%; padding:0}
+body.detail .leftDiv .listSection .gridDiv .row .theme {font-size:1.1em; font-weight:500}
+body.detail .leftDiv .listSection .gridDiv .theme {flex:1}
+body.detail .leftDiv .listSection .gridDiv .eDate {width:90px}
+body.detail .leftDiv .listSection .gridDiv .cDate {width:90px}
+body.detail .leftDiv .listSection .gridDiv .memo {flex:2}
+
+body.detail .leftDiv .statSection {flex:0 1 250px; display:flex; flex-direction:column; gap:1em}
+body.detail .leftDiv .statSection .bodyDiv {flex:1 1 auto; display:flex}
+
+body.detail .rightDiv .tabDiv {display:flex; align-items:flex-end; gap:0.5em}
+body.detail .rightDiv .tabDiv .tab {font-size:1.25em; font-weight:600; border-radius:0.5em 0.5em 0 0; background-color:#292929; color:#585858; padding:0.75em 1em}
+body.detail .rightDiv .tabDiv .tab:last-child {background-color:#384444 !important; color:#a2b5b4 !important}
+body.detail .rightDiv .tabDiv .tab >*+* {margin-left:10px}
+body.detail .rightDiv .bodyDiv {flex:1; display:flex; flex-direction:column; background-color:rgb(42 44 45 / 34%); overflow:auto}
+body.detail .rightDiv .bodyDiv .memoDiv {display:flex; align-items:center; padding:1em; gap:0.5em}
+.graphDiv {flex:1; display:flex; flex-flow:column wrap; align-items:center; gap:8px; padding:0 8px 8px; overflow:auto}
+.graphDiv article {flex:1 1 auto; display:flex; flex-direction:column; gap:1em; background-color:#474f4f; padding:15px; border-radius:0.5em; border:1px solid #313534; align-self:stretch; overflow:hidden; min-width:49%}
+.graphDiv article > .tit {display:flex; align-items:center; font-size:1.25em; font-weight:500; position:relative}
+article .gaugeIndex {display:flex; height:30px; position:relative; margin:0 -16px}
+
+.graphDiv article.t1 > .tit .icon {background-image:url('../img/t1.svg')}
+.graphDiv article.t2 > .tit .icon {background-image:url('../img/t2.svg')}
+.graphDiv article.t3 > .tit .icon {background-image:url('../img/t3.svg')}
+.graphDiv article.t4 > .tit .icon {background-image:url('../img/t4.svg')}
+.graphDiv article.t5 > .tit .icon {background-image:url('../img/t5.svg')}
+.graphDiv article.t6 > .tit .icon {background-image:url('../img/t6.svg')}
+.graphDiv article.t7 > .tit .icon {background-image:url('../img/t7.svg')}
+.graphDiv article.t8 > .tit .icon {background-image:url('../img/t8.svg')}
+.graphDiv article > .tit .icon {width:20px; height:20px; display:inline-block; margin-right:10px; background-repeat:no-repeat; background-size:contain; filter:invert(100%); -webkit-filter:invert(100%); opacity:40%;}
+.graphDiv article.warning > .tit .lamp {position:absolute; top:-8px; left:-8px; width:36px; height:36px; border-radius:20px; background-color:red; animation-name:blink1; animation-duration:0.5s; animation-delay:0s; animation-iteration-count:infinite; animation-fill-mode:both; animation-timing-function:ease; filter:blur(10px)}
+.graphDiv article.warning > .tit {color:#fff; font-weight:400}
+.graphDiv article.warning > .tit .icon {opacity:60%}
+
+article .gaugeIndex table {flex:1; width:100%; height:100%; border-collapse:separate; border-spacing:1px; background-color:#3c3c3c; color:#000; font-size:12px; font-weight:700}
+article.t1 .gaugeIndex table td:nth-child(1) {background:linear-gradient(135deg, rgba(164,209,137,1) 0%, rgba(106,146,83,1) 100%) !important; width:10%}
+article.t1 .gaugeIndex table td:nth-child(2) {background:linear-gradient(135deg, rgba(231,203,117,1) 0%, rgba(255,193,0,1) 100%) !important; width:10%}
+article.t1 .gaugeIndex table td:nth-child(3) {background:linear-gradient(135deg, rgba(255,127,51,1) 0%, rgba(254,94,0,1) 100%) !important; width:10%}
+article.t1 .gaugeIndex table td:nth-child(4) {background:linear-gradient(135deg, rgba(255,75,75,1) 0%, rgba(252,0,0,1) 100%) !important; width:10%}
+article.t1 .gaugeIndex table td:nth-child(5) {background:linear-gradient(135deg, rgba(232,6,6,1) 0%, rgba(196,0,0,1) 100%) !important; width:20%}
+article.t1 .gaugeIndex table td:nth-child(6) {background:linear-gradient(135deg, rgba(180,0,0,1) 0%, rgba(135,0,0,1) 100%) !important; width:40%; color:yellow; font-weight:300}
+article.t2 .gaugeIndex table td:nth-child(1) {background:linear-gradient(135deg, rgba(164,209,137,1) 0%, rgba(106,146,83,1) 100%) !important; width:20%}
+article.t2 .gaugeIndex table td:nth-child(2) {background:linear-gradient(135deg, rgba(231,203,117,1) 0%, rgba(255,193,0,1) 100%) !important; width:20%}
+article.t2 .gaugeIndex table td:nth-child(3) {background:linear-gradient(135deg, rgba(255,127,51,1) 0%, rgba(254,94,0,1) 100%) !important; width:20%}
+article.t2 .gaugeIndex table td:nth-child(4) {background:linear-gradient(135deg, rgba(255,75,75,1) 0%, rgba(252,0,0,1) 100%) !important; width:20%}
+article.t2 .gaugeIndex table td:nth-child(5) {background:linear-gradient(135deg, rgba(180,0,0,1) 0%, rgba(135,0,0,1) 100%) !important; width:20%; color:yellow; font-weight:300}
+article .gaugeIndex table td {position:relative; padding:0}
+article .gaugeIndex table td span:nth-child(1) {position:absolute; top:0; left:1px}
+article .gaugeIndex table td span:nth-child(2) {position:absolute; bottom:1px; right:1px}
+article .gaugeIndex .locator {position:absolute; bottom:-8px; left:0; transform:translateX(-2px);display:block; width:0px; height:0px; border-bottom:12px solid #f7c100; border-left:4px solid transparent; border-right:4px solid transparent; transition: ease-out 0.4s;}
+
+.graphDiv .row {display:flex; align-items:center; gap:4px}
+.graphDiv .row > .tit {width:74px}
+.graphDiv .row > .unit {width:24px; font-size:0.75em}
+.graphDiv article > .mentFilter {flex:1; display:flex; padding:4px; background-color:#434343; border-radius:3px; font-weight:500; font-size:1em; gap:4px}
+.graphDiv article > .mentFilter .content {flex:1; color:#ffc100; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
+.graphDiv article > .mentFilter .content textarea {width:100%; height:100%; background:transparent; border:unset; padding:unset; color:#bbb}
+
+.cylinder {flex:1; display:block; height:14px; border-radius:40px; border:1px solid #333; background-color:#999; font-weight:500; position:relative; font-size:0.75em}
+.cylinder .minValue {position:absolute; top:100%; left:0; color:#9b9b9b}
+.cylinder .maxValue {position:absolute; top:100%; right:0; color:#9b9b9b}
+.cylinder .threshold {position:absolute; top:-1px; left:-1px; height:13px; text-align:right; border-right:2px solid red}
+.cylinder .threshold span {position:absolute; top:100%; right:0; transform:translateX(50%)}
+.cylinder .currentBar {position:absolute; left:0; top:0; height:12px; padding:1px 2px 0 0; border-radius:40px; text-align:right; background-color:#6a9e38; color:#000; max-width:100%; transition: ease-out 0.4s;}
+.cylinder .currentBar.overThreshold {background-color:#b70606; color:#ccc; background:linear-gradient(135deg, #6a9e38 53%, #e20000 100%);}
+
+body.detail .rightDiv article > * {align-self:stretch; flex:0 1 auto}
+article.t6 .rowGroup {display:flex; align-items:center; gap:0.5em}
+article.t6 .rowGroup  > div {flex:0 1 100px; height:30px; position:relative}
+article.t6 .rowGroup .lamp {position:absolute; top:0; left:0; width:100%; height:100%; border-radius:40px; background-color:#999999 }
+article.t6 .rowGroup .tit {position:absolute; top:0; left:0; width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:#fff; white-space:nowrap}
+
+
+/* 일반 페이지 공통 */
+body.page .contentBox .content {flex:1; display:flex; gap:26px; overflow:auto; z-index:1; padding:40px 20px 20px 40px}
+body.page .titSection {display:flex; align-items:center}
+body.page .titSection .pageTit {font-size:1.5rem; font-weight:600}
+body.page .titSection .ment {font-size:1rem; font-weight:600; margin-left:12px; background-color:#bfceda; border-radius:6px; padding:6px 10px}
+body.page .titSection .option {margin-left:auto; font-size:1.5rem; font-weight:600}
+body.page .titSection .tit {font-size:15px; font-weight:700; margin-bottom:10px}
+
+.srchSection {display:flex; align-items:center; flex-flow:row wrap; gap:10px; background-color:#d4ddd7; padding:10px; border-radius:6px}
+.srchSection .row {display:flex; align-items:center; gap:6px}
+.srchSection .row .answer {display:flex; align-items:center; gap:6px}
+.srchSection select {padding:0 !important} 
+.srchSection .btnDiv {display:flex; gap:8px; white-space:nowrap}
+
+.listSection {flex:0 1 auto; display:flex; flex-direction:column; overflow:auto}
+.listSection .listHeader {display:flex; align-items:center; gap:10px; background-color:#bdced9; font-weight:600}
+.listSection .listHeader > * {padding:10px 0}
+.sort::after {content:'\f0dc'; font-family:'fa'; font-weight:700; margin-left:8px}
+.sort:hover::after {color:#c04337; cursor:pointer}
+.sort:hover {cursor:pointer}
+
+.listSection .listBody {display:flex; flex-direction:column; font-size:15px; overflow:auto; min-height:44px}
+.listSection .listBody > .row {display:flex; align-items:start; gap:10px; padding:14px 0; border-bottom:1px dotted #9e9e9e; background-color:#f1f1f1}
+.listSection .listBody > .row:last-child {border:unset}
+.listSection .listBody > .row:hover {background-color:#dde7cf !important}
+.listSection.history .no {width:60px; text-align:center}
+.listSection.history .depth1 {width:60px}
+.listSection.history .depth2 {width:60px}
+.listSection.history .depth3 {flex:1; min-width:120px; max-width:180px}
+.listSection.history .theme {width:140px}
+.listSection.history .eDate {width:150px}
+.listSection.history .cDate {width:150px}
+.listSection.history .user {width:100px}
+.listSection.history .memo {flex:3}
+
+.pagingSection {display:flex; flex-direction:row; align-items:center; justify-content:space-between; padding:20px 0; border-top:1px solid #a8aebf}
+.pagingSection > * {flex:1; display:flex; justify-content:center; align-items:center;  white-space:nowrap}
+.pagingSection .totInfo {font-weight:600}
+.pagingSection .option {display:flex; gap:10px}
+.pagingSection ul {display:flex; justify-content:center}
+.pagingSection li {display:inline-flex; padding:6px; border-radius:3px; font-weight:bold; height:33px; min-width:32px; border-radius:20px; align-items:center; justify-content:center; font-size:12px;  position:relative}
+.pagingSection li:hover {background-color:#c7cec9; cursor:pointer}
+.pagingSection li.active {background-color:#b7c2ba}
+.pagingSection .end::before {content:''; width:2px; height:11px; border-radius:2px; background-color:#676767; transform:translateX(-1px)}
+.pagingSection .end::after {content:'\f104'; font-family:'fa'; font-weight:700}
+.pagingSection .prev::before {content:'\f104'; font-family:'fa'; font-weight:700}
+.pagingSection .next::before {content:'\f105'; font-family:'fa'; font-weight:700}
+.pagingSection .first::before {content:'\f105'; font-family:'fa'; font-weight:700}
+.pagingSection .first::after {content:''; width:2px; height:12px; border-radius:2px; background-color:#676767; transform:translateX(1px)}
+
+.btnSection {display:flex; flex-direction:row; align-items:center; padding:20px 0; border-top:1px solid #a8aebf; gap:8px}
+
+#detailModal .modalBody > .tit {font-size:16px; font-weight:600; display:flex; justify-content:space-between;}
+#detailModal .graphDiv {padding:0; margin:14px 0}
+#detailModal .graphDiv article {display:none; background-color:unset !important; border:unset; border-top:1px solid #999; border-bottom:1px solid #999; border-radius:unset; gap:20px; padding:20px 10px}
+#detailModal .graphDiv article > .tit {font-size:20px; font-weight:700; color:#000}
+#detailModal .graphDiv article > .tit .lamp,
+#detailModal .graphDiv article > .tit .icon{display:none}
+#detailModal .graphDiv article .row {font-weight:600}
+#detailModal .graphDiv .gaugeIndex {margin:unset}
+#detailModal .graphDiv .gaugeIndex .locator {border-bottom-color:red}
+#detailModal .graphDiv .cylinder {background-color:#d8d8d8 !important}
+#detailModal .graphDiv .currentBar {background-color:#7bc534 !important}
+#detailModal .graphDiv .currentBar.overThreshold {background-color:#e20000; color:#eee; background:linear-gradient(135deg, #7bc534 53%, #e20000 100%)}
+#detailModal .graphDiv .mentFilter {background-color:#e7e7e7}
+#detailModal .graphDiv .mentFilter textarea {color:#000; font-size:15px}
+#detailModal .memoDiv {font-size:15px; font-weight:600}
+#detailModal .memoDiv .tit {margin:10px 0 }
+#detailModal .memoDiv .tit span {font-size:14px; color:#870000}
+#detailModal .memoDiv textarea {width:100%; height:60px}
+#detailModal .memoDiv .regInfoDiv {text-align:right; margin-top:8px}
+#detailModal .memoDiv .regInfoDiv::before {content:'최초확인 :'}
+
+body.setting1 .tabMenuSection .setting1 {color:#3d5959; border:1px solid #3d5959; font-weight:bold; border-bottom:1px solid #ebebeb; margin-bottom:-1px; background:linear-gradient(0deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,1) 100%);}
+body.setting2 .tabMenuSection .setting2 {color:#3d5959; border:1px solid #3d5959; font-weight:bold; border-bottom:1px solid #ebebeb; margin-bottom:-1px; background:linear-gradient(0deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,1) 100%);}
+body.setting3 .tabMenuSection .setting3 {color:#3d5959; border:1px solid #3d5959; font-weight:bold; border-bottom:1px solid #ebebeb; margin-bottom:-1px; background:linear-gradient(0deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,1) 100%);}
+body.setting4 .tabMenuSection .setting4 {color:#3d5959; border:1px solid #3d5959; font-weight:bold; border-bottom:1px solid #ebebeb; margin-bottom:-1px; background:linear-gradient(0deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,1) 100%);}
+body.setting5 .tabMenuSection .setting5 {color:#3d5959; border:1px solid #3d5959; font-weight:bold; border-bottom:1px solid #ebebeb; margin-bottom:-1px; background:linear-gradient(0deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,1) 100%);}
+body.setting6 .tabMenuSection .setting6 {color:#3d5959; border:1px solid #3d5959; font-weight:bold; border-bottom:1px solid #ebebeb; margin-bottom:-1px; background:linear-gradient(0deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,1) 100%);}
+body.setting7 .tabMenuSection .setting7 {color:#3d5959; border:1px solid #3d5959; font-weight:bold; border-bottom:1px solid #ebebeb; margin-bottom:-1px; background:linear-gradient(0deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,1) 100%);}
+body.setting8 .tabMenuSection .setting8 {color:#3d5959; border:1px solid #3d5959; font-weight:bold; border-bottom:1px solid #ebebeb; margin-bottom:-1px; background:linear-gradient(0deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,1) 100%);}
+
+body#setting .listSection .row {align-items:start; background-color:#f4f4f4;}
+body#setting .srchSection {border-radius:6px 6px 0 0}
+
+body.setting1 .depth1Div .listSection .no {width:80px; text-align:center}
+body.setting1 .depth1Div .listSection .depth1 {flex:1; text-align:center}
+body.setting1 .depth1Div .listSection .del {width:60px; text-align:center}
+body.setting1 .depth1Div .listSection .order {width:80px; text-align:center}
+
+body#setting .boxSection {display:flex}
+body#setting .boxSection .gap {width:60px}
+body#setting .boxSection .gap::after {content:''; display:block; width:50%; height:100%; border-right:1px dashed #8d8d8d}
+
+body.setting1 .depth2Div .listSection .no {width:80px; text-align:center}
+body.setting1 .depth2Div .listSection .depth1 {flex:1; text-align:center}
+body.setting1 .depth2Div .listSection .depth2 {flex:1; text-align:center}
+body.setting1 .depth2Div .listSection .ground {width:60px; text-align:center}
+body.setting1 .depth2Div .listSection .listBody .ground {font-size:20px}
+body.setting1 .depth2Div .listSection .del {width:60px; text-align:center}
+body.setting1 .depth2Div .listSection .order {width:80px; text-align:center}
+
+body#setting .inputSection .tit {font-size:15px; font-weight:700; margin-bottom:10px}
+body#setting .inputSection .row {display:flex; align-items:center}
+body#setting .inputSection .row+.tit {margin-top:30px}
+body#setting .inputSection .row+.row {margin-top:10px}
+body#setting .inputSection .row .item {flex:0 0 70px}
+body#setting .inputSection .row .answer {flex:1; display:flex; align-items:center; align-self:stretch; gap:10px}
+body#setting .inputSection .btnDiv {display:flex; align-items:center; justify-content:center; gap:10px; margin-top:30px}
+body#setting .inputSection .btnDiv > button {flex:1}
+body#setting .tableSection {flex:0 1 auto; display:flex; flex-direction:column; overflow:auto;}
+body#setting .tableSection table {width:100%; border-collapse:collapse}
+body#setting .tableSection table .bgcolor {background-color:#b8c4d7}
+body#setting .tableSection td a {color: #307dc1}
+
+body.setting1 .srchSection,
+body.setting7 .srchSection {margin-bottom:unset !important}
+body#setting .srchSection {margin-bottom:-26px}
+
+body#setting .tableSection .themeSpan {display:flex; justify-content:center; gap: 6px}
+body#setting .tableSection .themeSpan > span {background-color:#d4ddd7; border-radius:4px; padding:2px 5px; display:inline-block}
+body#setting .infoSection {background-color:#f5e793; padding:16px}
+body#setting .infoSection ol {padding-left:10px}
+body#setting .infoSection ol li+li {margin-top:10px}
+
+body.setting4 #themeModal .invasion > .answer {display:flex; flex-direction:column; gap:6px}
+body.setting4 #themeModal .invasion label+label {margin-left:8px}
+body.setting4 #themeModal .box {display:flex; flex-direction:column; padding:6px; border-radius:4px; background-color:#ebebeb}
+body.setting4 #themeModal .box .answer {align-items:center}
+body.setting4 #themeModal .threshold {width:50px; margin:0 4px}
+
+body.setting4 #thresholdModal tbody {border-top:1px solid #333; border-bottom:1px solid #333}
+body.setting4 #thresholdModal tbody td[rowspan],
+body.setting4 #thresholdModal tbody td.rowspan {text-align:center; border-right:1px solid #999; font-weight:700}
+body.setting4 #thresholdModal tbody td {text-align:left; white-space:nowrap; padding:10px 8px; word-break:keep-all}
+body.setting4 #thresholdModal tbody td:last-child {white-space:unset}
+
+body.setting4 #actionModal tbody tr {border-top:1px solid #333; border-bottom:1px solid #333}
+body.setting4 #actionModal tbody tr td:first-child {font-weight:700}
+body.setting4 #actionModal td {padding:10px; white-space:nowrap}
+
+body.setting5 .receiver i {margin-right:10px}
+body.setting5 .receiver span {margin-right:20px}
+body.setting7 .mapSection {width:1300px; height:1000px; background-color:#fff; border-radius:0 0 6px 6px; padding:16px; margin-bottom:20px; border:2px dotted red; background-size:1300px auto; background-repeat:no-repeat; background-position:0 0}
+body.setting7 .mapSection .haloSensor {cursor:move}
+.haloSensor {display:inline-flex; flex-direction:column; align-items:center; gap:2px}
+.haloSensor .shape {width:40px; height:40px; background: linear-gradient(135deg, rgba(188,249,19,1) 0%, rgba(93,201,31,1) 100%); border:2px solid #000; color:#555; border-radius:50px}
+.haloSensor .shape::after {content:'\f83e'; font-family:'fa'; font-size:18px; color:#fff; width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+.haloSensor .name {background-color:#fff; color:#000; padding:2px; white-space:nowrap; border-radius:3px; font-weight:600; font-size:15px}
+
+.listSection.user .no {width:60px; text-align:center}
+.listSection.user .dept {width:200px}
+.listSection.user .grade {width:80px}
+.listSection.user .name {width:120px}
+.listSection.user .compNo {width:100px}
+.listSection.user .email {width:200px}
+.listSection.user .mobile {width:120px}
+.listSection.user .listBody .name.admin::after {content:'관리자'; font-size:14px; font-weight:600; background-color:#ffc100; padding:2px 4px; border-radius:4px; margin-left:2px}
+body#user #userModal .dept .item {align-items:start; padding-top:13px}
+body#user #userModal .dept .answer {flex-direction:column; gap:4px}
+
+body#stat .graphSection.tab1 {flex:1; display:flex; flex-direction:column; gap:20px; overflow:auto}
+body#stat .graphSection > article {display:flex; flex-direction:column; width:100%; background-color:#fff; padding:10px}
+body#stat .graphSection > article > .titDiv {display:flex; align-items:center; height:40px;  gap:10px}
+body#stat .graphSection > article > .titDiv .tit {display:flex; align-items:center; justify-content:center; gap:10px; font-size:16px; font-weight:700; color:#000; padding:0 20px; white-space:nowrap}
+body#stat .graphSection > article > .titDiv .tip::before {content:'\f05a'; font-family:'fa'; color:#f3c300; margin-right:6px}
+body#stat .graphSection > article > .titDiv .option {flex:1; display:flex; align-items:center; justify-content:end; gap:10px}
+
+
+body#stat .graphSection > article > .titDiv .t1 {background-color:#ffb5b5; color:#000; border:2px solid #ff0700; padding:2px 4px 2px 2px; border-radius:5px}
+body#stat .graphSection > article > .titDiv .t2 {background-color:#ffd792; color:#000; border:2px solid #ffa500; padding:2px 4px 2px 2px; border-radius:5px}
+body#stat .graphSection > article > .titDiv .t3 {background-color:#fff067; color:#000; border:2px solid #ffc100; padding:2px 4px 2px 2px; border-radius:5px}
+body#stat .graphSection > article > .titDiv .t4 {background-color:#b9f29a; color:#000; border:2px solid #38ab00; padding:2px 4px 2px 2px; border-radius:5px}
+body#stat .graphSection > article > .titDiv .t5 {background-color:#98d8ff; color:#000; border:2px solid #007af3; padding:2px 4px 2px 2px; border-radius:5px}
+body#stat .graphSection > article > .titDiv .t6 {background-color:#bfc1ff; color:#000; border:2px solid #3438ff; padding:2px 4px 2px 2px; border-radius:5px}
+body#stat .graphSection > article > .titDiv .t7 {background-color:#eba9fa; color:#000; border:2px solid #a300f3; padding:2px 4px 2px 2px; border-radius:5px}
+body#stat .graphSection > article > .titDiv .t8 {background-color:#cccccc; color:#000; border:2px solid #999999; padding:2px 4px 2px 2px; border-radius:5px}
+
+body#stat .graphSection.tab1 > article > .containerBox {flex:1; display:flex; gap:30px}
+body#stat .graphSection.tab1 > article .canvasDiv {flex:1; display:flex}
+body#stat .graphSection.tab1 > article canvas {height:300px}
+body#stat .graphSection.tab1 > article > .containerBox .index {width:110px; padding-bottom:30px; padding-top: 7px;}
+
+.indexAir {display:flex; flex-direction:column; width:100%; height:100%}
+.indexAir > div {display:flex; align-items:center; padding-left:8px}
+.indexAir > div > span:first-child {font-size:16px; font-weight:700; margin-right:8px; white-space:nowrap}
+.indexAir > div:nth-child(1) {flex:4; background:linear-gradient(135deg, rgba(180,0,0,1) 0%, rgba(135,0,0,1) 100%)}
+.indexAir > div:nth-child(2) {flex:2; background:linear-gradient(135deg, rgba(232,6,6,1) 0%, rgba(196,0,0,1) 100%)}
+.indexAir > div:nth-child(3) {flex:1; background:linear-gradient(135deg, rgba(255,75,75,1) 0%, rgba(252,0,0,1) 100%)}
+.indexAir > div:nth-child(4) {flex:1; background:linear-gradient(135deg, rgba(255,127,51,1) 0%, rgba(254,94,0,1) 100%)}
+.indexAir > div:nth-child(5) {flex:1; background:linear-gradient(135deg, rgba(231,203,117,1) 0%, rgba(255,193,0,1) 100%)}
+.indexAir > div:nth-child(6) {flex:1; background:linear-gradient(135deg, rgba(164,209,137,1) 0%, rgba(106,146,83,1) 100%)}
+
+.indexHealth {display:flex; flex-direction:column; width:100%; height:100%}
+.indexHealth > div {display:flex; align-items:center; padding:3px}
+.indexHealth > div > span:first-child {font-size:16px; font-weight:700; margin-right:8px; white-space:nowrap}
+.indexHealth > div:nth-child(1) {flex:1; background:linear-gradient(135deg, rgba(180,0,0,1) 0%, rgba(135,0,0,1) 100%)}
+.indexHealth > div:nth-child(2) {flex:1; background:linear-gradient(135deg, rgba(255,75,75,1) 0%, rgba(252,0,0,1) 100%)}
+.indexHealth > div:nth-child(3) {flex:1; background:linear-gradient(135deg, rgba(255,127,51,1) 0%, rgba(254,94,0,1) 100%)}
+.indexHealth > div:nth-child(4) {flex:1; background:linear-gradient(135deg, rgba(231,203,117,1) 0%, rgba(255,193,0,1) 100%)}
+.indexHealth > div:nth-child(5) {flex:1; background:linear-gradient(135deg, rgba(164,209,137,1) 0%, rgba(106,146,83,1) 100%)}
+
+body#stat .graphSection.tab2 {flex:1; display:flex; flex-flow:row wrap; gap:20px; overflow:auto}
+body#stat .graphSection.tab2 > article {flex:1 1 24%; min-width:500px; display:flex}
+body#stat .graphSection.tab2 > article > .canvasDiv {flex:1; height:50%}
+/* body#stat .graphSection.tab2 > article canvas {height:300px} */
+
+body#stat .graphSection.tab3 {flex:1; display:flex; overflow:auto}
+body#stat .graphSection.tab3 > article {flex:1; display:flex}
+body#stat .graphSection.tab3 > article > .canvasDiv {flex:1; height:50%}
+
+
+
+
+
+
